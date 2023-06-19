@@ -2,3 +2,4 @@ passwords.py
 __pycache__
 .vscode
 .gitignore
+cogs/__pycache__
