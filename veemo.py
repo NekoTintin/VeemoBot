@@ -9,6 +9,7 @@ import passwords as passwd
 
 default_intents = discord.Intents.default()
 default_intents.message_content = True
+default_intents.guild_scheduled_events = True
 bot = commands.Bot(command_prefix=";", intents=default_intents, help_command=None)
 
 @bot.command()
