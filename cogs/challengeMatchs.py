@@ -1,7 +1,5 @@
 import discord
 from discord.ext import commands
-from discord import app_commands
-from discord.embeds import Embed
 
 from selenium import webdriver as scrap
 from datetime import datetime as dt

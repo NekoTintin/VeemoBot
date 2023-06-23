@@ -2,7 +2,6 @@ from os import listdir
 
 import discord
 from discord.ext import commands
-from discord.embeds import Embed
 import asyncio
 
 import passwords as passwd
