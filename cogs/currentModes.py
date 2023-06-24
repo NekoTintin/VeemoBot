@@ -16,7 +16,7 @@ opts.add_argument("--headless")
 opts.add_argument("--no-sandbox")
 opts.add_argument("--disable-dev-shm-usage")
 
-class CurrentRota(commands.Cog):
+class CurrentModes(commands.Cog):
     
     def __init__(self, bot) -> None:
         self.bot = bot
@@ -65,10 +65,6 @@ class CurrentRota(commands.Cog):
                 await channel.send(embed=msg_open)
 
             await asyncio.sleep(60)
-
-        
-
-
         
 async def setup(bot):
-    await bot.add_cog(CurrentRota(bot))
+    await bot.add_cog(CurrentModes(bot))

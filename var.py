@@ -2,12 +2,13 @@ driver_path = "/home/Tintin/discord_bot/VeemoBot/chromedriver/chromedriver"
 
 challenge_url = "https://splatoon3.ink/challenges"
 planning_url = "https://splatoon3.ink/"
+salmon_run_url = "https://splatoon3.ink/salmonrun"
 
 # Dictionnaire qui stocke les cogs chargés
 loaded_ext = list()
 
 online_message = "la rotation des stages"
-ver_num = "0.2.0"
+ver_num = "0.3.0"
 
 # Fonction pour obtenir les modules chargés
 def get_modules() -> list():
