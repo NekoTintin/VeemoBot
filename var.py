@@ -8,7 +8,7 @@ salmon_run_url = "https://splatoon3.ink/salmonrun"
 loaded_ext = list()
 
 online_message = "la rotation des stages"
-ver_num = "0.3.0"
+ver_num = "0.3.1"
 
 # Fonction pour obtenir les modules chargés
 def get_modules() -> list():
