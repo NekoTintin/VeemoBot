@@ -45,7 +45,8 @@ rules = {
 # Salmon Run
 boss = {
     "SakeRope": {"name": "Salmophide", "icon": "https://culture-sympathique.fr/splatoon/boss/sakerope.png"},
-    "SakelienGiant": {"name": "Salmotori", "icon": "https://culture-sympathique.fr/splatoon/boss/sakeliengiant.png"} 
+    "SakelienGiant": {"name": "Salmotori", "icon": "https://culture-sympathique.fr/splatoon/boss/sakeliengiant.png"},
+    "Random": {"name": "Aléatoire", "icon": "https://culture-sympathique.fr/splatoon/boss/random.png"}
 }
 
 coop_modes = {
@@ -69,6 +70,7 @@ coop_stages = {
 }
 
 weapons = {
+    -1: "Aléatoire",
     0: "Marqueur lourd",
     1: "Marqueur lourd Néo",
     10: "Liquidateur Jr.",

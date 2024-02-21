@@ -1,11 +1,14 @@
 from discord.ext import commands
 from discord.embeds import Embed
+from discord.ui import View, Button
 
 import asyncio
 from datetime import datetime as dt
+import datetime
 from pytz import timezone
 from requests import get
 from os.path import exists, getsize
+import sqlite3
 
 from data import vs_stages, rules
 
@@ -27,24 +30,8 @@ class Ping_schedule(commands.Cog):
         channel = self.bot.get_channel(channel_id)
         
         while not self.bot.is_closed():
-            if getsize("/home/Tintin/discord_bot/VeemoBot/last_message") == 0:
-                #data = self._check_data()
-                data = self._force_to_test()
-                if data != None:
-                    await channel.send(embed=self._create_embed(data))
-                    end_time = dt.fromisoformat(data["endTime"][:-1])
-                    with open("/home/Tintin/discord_bot/VeemoBot/last_message", "w") as file:
-                        file.write(f"{end_time.hour:02d}:{end_time.minute:02d} {end_time.day}/{end_time.month}/{end_time.year}")          
-            else:
-                with open("/home/Tintin/discord_bot/VeemoBot/last_message", "r") as file:
-                    endate = dt.strptime(file.read().strip(), "%H:%M %d/%m/%Y").replace(tzinfo=tzone)
-                    if dt.now(tzone) >= endate:
-                        await channel.purge()
-
-                        with open("/home/Tintin/discord_bot/VeemoBot/last_message", "w") as empty_file:
-                            empty_file.truncate(0)
-                    else:
-                        await self._send_reminder()
+            self._check_data()
+            
             await asyncio.sleep(60)
 
     def _create_embed(self, data: dict) -> Embed:
@@ -59,26 +46,39 @@ class Ping_schedule(commands.Cog):
         emb.add_field(name='Horaires',
             value=f'De {data["startTime"][11:-4]} à {data["endTime"][11:-4]}')
         return emb
-            
-    def _check_data(self) -> dict:
+    
+    
+    def _write_data(self, rule, mode, start_time_fr) -> None:
+        conn = sqlite3.connect("/home/Tintin/discord_bot/VeemoBot/ping_data.db")
+        cur = conn.cursor()
+        
+        cur.execute("SELECT * FROM Schedule")
+        if start_time_fr in cur.fetchone()[3]:
+            print("pass")
+            conn.close()
+            return
+                
+        cur.execute("""INSERT INTO Schedule (title, stage_1, stage_2, start_time, end_time, image_url, thumbnail_url) VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            (rule, vs_stages[mode["BankaraOpen"]["stages"][0]]["name"], vs_stages[mode["BankaraOpen"]["stages"][1]]["name"], mode["startTime"], mode["endTime"], 
+             vs_stages[mode["BankaraOpen"]["stages"][1]]["image"], rules[rule]["icon"]))
+        conn.commit()
+        conn.close()
+        
+    
+    def _check_data(self):
         response = get(url, params=params, headers=headers)
         if response.status_code == 200:
             json_data = response.json()
-                
+            
             for mode in json_data["normal"]:
                 rule = mode["BankaraOpen"]["rule"]
+                
                 start_time = dt.fromisoformat(mode["startTime"][:-1])
-                    
-                if (rule == "Clam" or rule == "Goal") and start_time.hour == 22:
-                    return mode
-            return None
-        
-    async def _send_reminder(self):
-        if getsize("/home/Tintin/discord_bot/VeemoBot/last_message") != 0:
-            if dt.now(tzone).hour == 16 and dt.now(tzone).minute == 0:
-                await self.bot.get_channel(channel_id).send("@everyone, la session commencera dans **6 heures** !")
-            elif dt.now(tzone).hour == 22 and dt.now(tzone).minute == 0:
-                await self.bot.get_channel(channel_id).send("@everyone, la session a commencée !")
+                start_time_fr = start_time + datetime.timedelta(hours=2)
+                
+                if (rule == "Clam" or rule == "Goal") and start_time_fr.time().hour == 22:
+                    self._write_data(rule, mode)
+                    self._create_embed()
         
 async def setup(bot) -> None:
     await bot.add_cog(Ping_schedule(bot))
