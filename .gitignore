@@ -4,3 +4,4 @@ __pycache__
 .gitignore
 cogs/__pycache__
 last_message
+paths.py

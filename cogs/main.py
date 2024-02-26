@@ -3,7 +3,7 @@ from discord.ext import commands
 
 from platform import python_version
 
-import var
+import tools.var as var
 
 class Main(commands.Cog):
     

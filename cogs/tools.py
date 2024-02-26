@@ -5,7 +5,7 @@ from discord.ext import commands
 from discord.embeds import Embed
 from discord import app_commands
 # Module du bot
-import var
+import tools.var as var
 
 class Tools(commands.GroupCog, name="tools"):
     

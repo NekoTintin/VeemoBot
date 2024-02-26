@@ -6,7 +6,7 @@ from datetime import datetime as dt
 from pytz import timezone
 import requests
 
-from data import vs_stages, vs_modes, rules, coop_stages, boss, weapons
+from data.splatoon_data import vs_stages, vs_modes, rules, coop_stages, boss, weapons
 
 tzone = timezone('Europe/Paris')
 url = "https://splatoon.oatmealdome.me/api/v1/three/versus/phases?count=1"
@@ -66,7 +66,7 @@ class Match_stage(commands.Cog):
             current_time = dt.now(tzone)
             channel = self.bot.get_channel(1120359792091865168)
 
-            if current_time.hour % 2 == 0 and current_time.minute == 0:
+            if current_time.hour % 2 != 0 and current_time.minute == 0:
             #if current_time.minute >= 0: # To test when not working
                 response = requests.get(url, params=params, headers=headers)
                 salmon_response = requests.get(url_salmon, params=params, headers=headers)

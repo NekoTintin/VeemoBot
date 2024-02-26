@@ -2,10 +2,10 @@
 loaded_ext = list()
 
 online_message = "la rotation des stages."
-ver_num = "0.7.0"
+ver_num = "0.8.0"
 
 # Fonction pour obtenir les modules chargés
-def get_modules() -> list():
+def get_modules() -> list:
     l = list()
     for filename in loaded_ext:
         l.append(filename)

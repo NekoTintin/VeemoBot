@@ -19,6 +19,8 @@ vs_stages = {
     18: {"name": "Manta Maria", "image": "https://culture-sympathique.fr/splatoon/stage/18.png"},
     19: {"name": "Quartier Crabe-ciels", "image": "https://culture-sympathique.fr/splatoon/stage/19.png"},
     20: {"name": "Chaland Flétan", "image": "https://culture-sympathique.fr/splatoon/stage/20.png"},
+    21: {"name": "Arène Méca-ramen", "image": "https://culture-sympathique.fr/splatoon/stage/21.png"},
+    22: {"name": "Mine Marine", "image": "https://culture-sympathique.fr/splatoon/stage/22.png"},
     -1: {"name": "???", "image": None}
 }
 
@@ -46,6 +48,7 @@ rules = {
 boss = {
     "SakeRope": {"name": "Salmophide", "icon": "https://culture-sympathique.fr/splatoon/boss/sakerope.png"},
     "SakelienGiant": {"name": "Salmotori", "icon": "https://culture-sympathique.fr/splatoon/boss/sakeliengiant.png"},
+    "SakeJaw": {"name": "Salmodon", "icon": "https://culture-sympathique.fr/splatoon/boss/sakejaw.png"},
     "Random": {"name": "Aléatoire", "icon": "https://culture-sympathique.fr/splatoon/boss/random.png"}
 }
 
@@ -66,6 +69,7 @@ coop_stages = {
     102: {"name": "Institut Calam'arts", "image": None},
     103: {"name": "Réservoir Rigadelle", "image": None},
     104: {"name": "Ruines Uma'mi", "image": None},
+    105: {"name": "Halles de Port-merlu", "image": None},
     -1: {"name": "???", "image": None}
 }
 
@@ -96,6 +100,7 @@ weapons = {
     200: "Proxiblaster",
     201: "Proxiblaster Néo",
     210: "Éclablaster",
+    211: "Éclablaster modifié",
     220: "Éclablaster XL",
     230: "Rafablaster",
     231: "Rafablaster Néo",
@@ -104,11 +109,13 @@ weapons = {
     250: "Turboblaster pro",
     251: "Turboblaster pro chic",
     260: "S-Blaster '92",
+    261: "S-Blaster '91",
     300: "Arroseur léger",
     301: "Arroseur léger Cétacé",
     310: "Arroseur lourd",
     311: "Arroseur lourd Cétacé",
     400: "Compresseur",
+    401: "Compresseur alu",
     1000: "Rouleau carbone",
     1001: "Rouleau carbone chic",
     1010: "Rouleau",
@@ -123,6 +130,7 @@ weapons = {
     1110: "Épinceau brosse",
     1111: "Épinceau brosse nuancé",
     1120: "Épinceau écaïe",
+    1121: "Épinceau écaïe nuancé",
     2000: "Décap'express Alpha",
     2010: "Concentraceur",
     2011: "Concentraceur E+F",
@@ -134,6 +142,7 @@ weapons = {
     2060: "Détubeur",
     2061: "Détubeur modifié",
     2070: "Crayon X - 5H",
+    2071: "Crayon X - 5B",
     3000: "Seauceur",
     3001: "Seauceur chic",
     3010: "Dépoteur",
@@ -156,6 +165,7 @@ weapons = {
     5000: "Double moucheteur",
     5001: "Double moucheteur nuancé",
     5010: "Double encreur",
+    5011: "Double encreur griffé",
     5020: "Double Kelvin 525",
     5030: "Double nettoyeur",
     5031: "Double nettoyeur modifié",
@@ -166,10 +176,13 @@ weapons = {
     6010: "Para-encre XL",
     6011: "Para-encre XL Sorella",
     6020: "Para-encre espion",
+    6021: "Para-encre espion Sorella",
     7010: "Trisperceur",
     7011: "Trisperceur Abysma",
     7020: "Coralux 450",
+    7021: "Coralux 450 chic",
     8000: "Éclatana d'estampe",
+    8001: "Éclatana d'estampe Néo",
     8010: "Éclatana Doto",
     8011: "Éclatana Doto chic",
     10000: "Marqueur lourd",
